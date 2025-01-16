@@ -8,7 +8,8 @@ const page = () => {
 
 
     useEffect(() => {
-        fetch('/api/puppeteer')
+
+        fetch('api/puppeteer')
             .then((res) => res.json())
             .then((data) => {
                 console.log(data.message)

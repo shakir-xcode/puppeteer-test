@@ -27,21 +27,28 @@ export async function GET(request) {
             })
         }
         const page = await browser.newPage();
+
         // Navigate the page to a URL.
         await page.goto('https://developer.chrome.com/');
 
-        const pageTitle = await page.title();
+        const pageTitle1 = await page.title();
+        console.log("PAGE TITLE ---------------------- ", pageTitle1)
+        // Navigate the page to a URL.
+        await page.goto('https://facebook.com/');
+        const pageTitle2 = await page.title();
+
+
 
         await browser.close();
 
-        return new NextResponse(JSON.stringify({ message: pageTitle }), {
+        return new NextResponse(JSON.stringify({ message: `${pageTitle1}__ ${pageTitle2}` }), {
             status: 200,
             headers: {
                 'Content-Type': 'text/plain',
             },
         });
     } catch (error) {
-        console.error(' error getting title:', error);
+        console.error(' error getting title:', error.message);
         return NextResponse.json(
             { message: 'Error getting title' },
             { status: 500 }
